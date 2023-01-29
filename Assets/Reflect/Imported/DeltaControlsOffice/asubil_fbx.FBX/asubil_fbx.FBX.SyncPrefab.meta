@@ -1,0 +1,105 @@
+fileFormatVersion: 2
+guid: 70d8055746fa10a4ca4ff82e7c775183
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f488ea0f1e5ec1f45a401a0e4b986db1, type: 3}
+  materialRemaps:
+  - syncMaterialName: 1af244c52a89f1225c8f13a9aedf7468
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 75d4a22c6f47eba00989a7b7e706166a
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 6b6b8c1e82fd9ff66d1de9e8d1529091
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 762ab7277e3e20147da8d66a239af9e5
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 1f177482329338ac5c6118dc8a1f0bad
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 375bcca8df35af7cf8f9d289ff2a1347
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: ea89b75245f207f09b76f34ce3c4defe
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: d2be7b7ee1a1c0dc70f13d5d6b28749e
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 9106caa764be16d0443a5d4b2e6d02a5
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 6139ddb732ce9179cfe9ecc0f3b7e300
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 6b055638928f15ffec44e6735bd97a2a
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: fe86856d5e42dfac4b6e6599ec02ef46
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: e3decf0bd20d0ea687935649dd194d2f
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 16f3bb7bb4560d08c6fa354d936c01fc
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 62938fd6ccf3f4f053f551eb5053d3c0
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: f25e0e589dece87a48bd6e5de41eb363
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: d756799c80ec75843162a95e98ef4c1a
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: d4cd1e51ae60fa07a987bebb5ff89ece
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: fcf614a804ba102916bb7cc3580643f9
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 97fa1fe2c4e6bf38bc6a8cbc72144332
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: a17c0cb6a3ae2b71f764bf02d7d2b995
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 579891d344a824df8a04f4f6e525ffab
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 01511af8cd0999b816daed65f0f836d8
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 56cd7d4b2ea1ff5de1c73c922eada880
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 46f2d64398050de5e3dee3beeaa6e35a
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: d052e047c53143617d8d287d9d8ebd42
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 010e7e6e294f1ea5e70f5efaca9c04fd
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 57122f709e120f04d2b36bdf017647b2
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: c4670f61befb8173e155ff5324b5b9f8
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 3508149f51b156f74d9abad978b411cc
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 5ab47f361ba89ffd5464d46e467d797b
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 00c1d082fe4502b8da2476c726c8e947
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 5c0d1548b8c4c6631817109d3671725f
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 907655850855b6144ec8c55c242cd068
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 60ca9fea37fd412a09371104f5d2bd76
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: ffc2a0e108bb9a2f80f8b05fa6c516a9
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 26a416fef91047ba345ca22e4da33b30
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 1160d906277f6eb3d78bb42936a2c243
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 76825034a33213806b5aae1af54df416
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 4c079ea191307e127995cc0ef04ddf89
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 0621dcb5cc21a8c78571eea27563a156
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 90931718ec674ea98b38a7958b2f4850
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: c9c2f43f03db1a148719068edb65c0c4
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 9a93b1a0f3980cd459b59d14c5cd098b
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: eda51d6b8627e3ce0c1b794b1cfbbea4
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 8838431715af29f5831bf9c50d0835af
+    remappedMaterial: {instanceID: 0}
+  - syncMaterialName: 97fe8c533c6e9af0287e2e03b5368d7f
+    remappedMaterial: {instanceID: 0}
