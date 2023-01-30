@@ -10,6 +10,7 @@ TagManager:
   - Dude
   - Orphan
   - IgnoreSpatialSelector
+  - Receiver1
   layers:
   - Default
   - TransparentFX
