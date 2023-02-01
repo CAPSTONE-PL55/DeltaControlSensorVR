@@ -3030,6 +3030,7 @@ GameObject:
   - component: {fileID: 1197334716}
   - component: {fileID: 1197334715}
   - component: {fileID: 1197334719}
+  - component: {fileID: 1197334720}
   - component: {fileID: 1197334718}
   m_Layer: 0
   m_Name: Main Camera
@@ -3112,13 +3113,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1197334714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 597614b2bf8234d4e827b779609b50c3, type: 3}
+  m_Script: {fileID: 11500000, guid: acfaa0dbdf7a4244fbbbeea1eb24968b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 2
-  moveSpeed: 20
-  upDownSpeed: 10
-  sprintSpeed: 4
+  camSensX: 80
+  camSensY: 15
 --- !u!114 &1197334719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3152,6 +3151,21 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1197334720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197334714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01177bb46e6f1e54586e40aa38fffca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainSpeed: 10
+  shiftAdd: 20
+  maxShift: 50
 --- !u!1001 &1238582477
 PrefabInstance:
   m_ObjectHideFlags: 0
