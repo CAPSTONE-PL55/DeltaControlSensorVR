@@ -17,9 +17,9 @@ public class mqttController1 : MonoBehaviour
 
   private void OnMessageArrivedHandler(string newMsg)
   {
-  	if(newMsg!=null){
-  		this.GetComponent<TextMeshPro>().text = newMsg;
-  	}
+  	
+  	this.GetComponent<TextMeshPro>().text = newMsg;
+  	
     Debug.Log("Event Fired. The message, from Object " +nameController+" is = " + newMsg);
   }
 }
