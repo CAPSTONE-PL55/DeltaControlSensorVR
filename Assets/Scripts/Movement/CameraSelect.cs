@@ -13,14 +13,19 @@ public class CameraSelect : MonoBehaviour
 {
     public GameObject cam1;
     public GameObject cam2;
-    //public GameObject cam3;
+    public GameObject cam3;
     //public GameObject cam4;
 
     private void setCameras(bool first, bool second, bool third, bool fourth) {
         cam1.SetActive(first);
         cam2.SetActive(second);
-        //cam3.SetActive(third);
+        cam3.SetActive(third);
         //cam4.SetActive(fourth);
+    }
+
+    void Start()
+    {
+        setCameras(true, false, false, false);
     }
 
     // Update is called once per frame
@@ -30,7 +35,7 @@ public class CameraSelect : MonoBehaviour
             setCameras(true, false, false, false);
         }
         if (Input.GetButtonDown("2Key")) {
-            setCameras(true, true, false, false);
+            setCameras(false, true, false, false);
         }
         /*if (Input.GetButtonDown("3Key")) {
             setCameras(false, false, true, false);

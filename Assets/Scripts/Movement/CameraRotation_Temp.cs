@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraRotation : MonoBehaviour
+public class CameraRotation_Temp : MonoBehaviour
 {
     [Header("Camera Settings")]
     [Tooltip("Camera horizontal sensitivity.")]
     public float camSensX = 20f;
     [Tooltip("Camera vertical sensitivity.")]
     public float camSensY = 20f;
+
+    //public Transform orientation;
 
     //public Transform orientation;
     float xRotation;

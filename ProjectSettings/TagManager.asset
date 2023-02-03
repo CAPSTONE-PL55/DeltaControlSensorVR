@@ -31,9 +31,10 @@ TagManager:
   - HLOD
   - MeasureToolCursor
   - MeasureToolLine
-  - 
-  - 
+  - Ground
+  - WalkthroughVisitor
   - RenderTextureSource
+  - FlyingVisitor
   - 
   - 
   - 
@@ -42,7 +43,6 @@ TagManager:
   - 
   - 
   - 
-  - MARS Simulation Environment
   - HMDOnly
   m_SortingLayers:
   - name: Default
