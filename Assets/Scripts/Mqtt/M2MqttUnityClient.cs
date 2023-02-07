@@ -35,6 +35,26 @@ using uPLibrary.Networking.M2Mqtt.Messages;
 /// </summary>
 namespace M2MqttUnity
 {
+
+    // defining a struct to identify which readings we need for all O3 hubs
+    public struct HubReading
+    {
+        public double temperature;
+        public double humidity;
+        public double light;
+        public double sound;
+        public double occupancy;
+
+        public HubReading(double temperature, double humidity, double light, double sound, double occupancy)
+        {
+            this.temperature = temperature;
+            this.humidity = humidity;
+            this.light = light;
+            this.sound = sound;
+            this.occupancy = occupancy;
+        }
+    }
+
     /// <summary>
     /// Generic MonoBehavior wrapping a MQTT client, using a double buffer to postpone message processing in the main thread. 
     /// </summary>
@@ -58,7 +78,19 @@ namespace M2MqttUnity
         public string mqttUserName = null;
         [Tooltip("Password for the MQTT broker. Keep blank if no password is required.")]
         public string mqttPassword = null;
-        
+
+        /*
+         * Defining topic list to be used by all sensors, the id of each sensor will be
+         * appended to the end of each topic in each receiver class to identify specific sensor
+         */
+        public string[] topics = {
+            "events/object/irTemperature/",
+            "events/object/occupantHumidity/",
+            "events/object/lightLevel/",
+            "events/object/soundLevel/",
+            "events/object/combinedOccupancy/"
+        };
+
         /// <summary>
         /// Wrapped MQTT client
         /// </summary>
