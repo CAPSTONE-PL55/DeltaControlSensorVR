@@ -146,7 +146,7 @@ public class mqttReceiver1 : M2MqttUnityClient
     {
         foreach (string topic in this.topics)
         {
-            string topicWithID = topic + this.sensorID.ToString();
+            string topicWithID = this.sensorID.ToString() + topic;
             client.Subscribe(new string[] { topicWithID }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
         }
     }
@@ -155,7 +155,7 @@ public class mqttReceiver1 : M2MqttUnityClient
     {
         foreach (string topic in this.topics)
         {
-            string topicWithID = topic + this.sensorID.ToString();
+            string topicWithID = this.sensorID.ToString() + topic;
             client.Unsubscribe(new string[] { topicWithID });
         }
     }
@@ -174,11 +174,11 @@ public class mqttReceiver1 : M2MqttUnityClient
 
         Debug.Log($"Json string: {jsonString} | Current Value: {presentValue}");
 
-        if (this.topics[0] != null && (this.topics[0] + this.sensorID.ToString()).Equals(topic)) readings.temperature = presentValue;
-        else if (this.topics[1] != null && (this.topics[1] + this.sensorID.ToString()).Equals(topic)) readings.humidity = presentValue;
-        else if (this.topics[2] != null && (this.topics[2] + this.sensorID.ToString()).Equals(topic)) readings.light = presentValue;
-        else if (this.topics[3] != null && (this.topics[3] + this.sensorID.ToString()).Equals(topic)) readings.sound = presentValue;
-        else if (this.topics[4] != null && (this.topics[4] + this.sensorID.ToString()).Equals(topic)) readings.occupancy = presentValue;
+        if (this.topics[0] != null && (this.sensorID.ToString() + this.topics[0]).Equals(topic)) readings.temperature = presentValue;
+        else if (this.topics[1] != null && (this.sensorID.ToString() + this.topics[1]).Equals(topic)) readings.humidity = presentValue;
+        else if (this.topics[2] != null && (this.sensorID.ToString() + this.topics[2]).Equals(topic)) readings.light = presentValue;
+        else if (this.topics[3] != null && (this.sensorID.ToString() + this.topics[3]).Equals(topic)) readings.sound = presentValue;
+        else if (this.topics[4] != null && (this.sensorID.ToString() + this.topics[4]).Equals(topic)) readings.occupancy = presentValue;
 
         // this is the data being sent by this receiver class to the associated controller class 
         msg = string.Format("Temp: {0} \n" + "Humidity: {1} \n" + "Light: {2} \n" + "Sound: {3} \n" + "Occupancy: {4} \n",

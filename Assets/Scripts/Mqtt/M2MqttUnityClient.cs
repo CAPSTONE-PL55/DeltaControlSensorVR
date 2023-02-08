@@ -84,11 +84,11 @@ namespace M2MqttUnity
          * appended to the end of each topic in each receiver class to identify specific sensor
          */
         public string[] topics = {
-            "events/object/irTemperature/",
-            "events/object/occupantHumidity/",
-            "events/object/lightLevel/",
-            "events/object/soundLevel/",
-            "events/object/combinedOccupancy/"
+            "/events/object/irTemperature",
+            "/events/object/occupantHumidity",
+            "/events/object/lightLevel",
+            "/events/object/soundLevel",
+            "/events/object/combinedOccupancy"
         };
 
         /// <summary>
