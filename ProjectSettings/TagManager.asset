@@ -11,6 +11,7 @@ TagManager:
   - Orphan
   - IgnoreSpatialSelector
   - Receiver1
+  - Receiver2
   layers:
   - Default
   - TransparentFX

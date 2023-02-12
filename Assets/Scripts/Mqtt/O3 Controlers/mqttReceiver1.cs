@@ -143,11 +143,13 @@ public class mqttReceiver1 : M2MqttUnityClient
     }
 
     protected override void SubscribeTopics()
-    {
+    {   
+        Debug.Log("Subscribing to topics...");
         foreach (string topic in this.topics)
         {
             string topicWithID = this.sensorID.ToString() + topic;
             client.Subscribe(new string[] { topicWithID }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            Debug.Log($"Subscribed to topic: {topicWithID}");
         }
     }
 
