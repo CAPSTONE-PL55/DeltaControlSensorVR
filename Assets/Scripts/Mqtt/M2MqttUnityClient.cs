@@ -47,11 +47,11 @@ namespace M2MqttUnity
 
         public HubReading(double temperature, double humidity, double light, double sound, double occupancy)
         {
-            this.temperature = temperature;
-            this.humidity = humidity;
-            this.light = light;
-            this.sound = sound;
-            this.occupancy = occupancy;
+            this.temperature = System.Math.Round(temperature, 2);
+            this.humidity = System.Math.Round(humidity, 2);
+            this.light = System.Math.Round(light, 2);
+            this.sound = System.Math.Round(sound, 2);
+            this.occupancy = System.Math.Round(occupancy, 2);
         }
     }
 

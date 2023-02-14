@@ -184,11 +184,11 @@ public class mqttReceiver1 : M2MqttUnityClient
 
         // this is the data being sent by this receiver class to the associated controller class 
         msg = string.Format("Temp: {0} \n" + "Humidity: {1} \n" + "Light: {2} \n" + "Sound: {3} \n" + "Occupancy: {4} \n",
-            readings.temperature.ToString(),
-            readings.humidity.ToString(),
-            readings.light.ToString(),
-            readings.sound.ToString(),
-            readings.occupancy.ToString());
+            readings.temperature.ToString("0.00"),
+            readings.humidity.ToString("0.00"),
+            readings.light.ToString("0.00"),
+            readings.sound.ToString("0.00"),
+            readings.occupancy.ToString("0.00"));
 
         StoreMessage(msg);
     }
