@@ -10,7 +10,8 @@ public class CameraRotation : MonoBehaviour
     [Tooltip("Camera vertical sensitivity.")]
     public float camSensY = 20f;
 
-    public Transform orientation;
+    public Transform orientation1;
+    public Transform orientation2;
 
     //public Transform orientation;
     float xRotation;
@@ -25,7 +26,7 @@ public class CameraRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Cursor.visible) {
+        if (!Cursor.visible && !Input.GetKey(KeyCode.C)) {
             float mouseX = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * camSensX;
             float mouseY = Input.GetAxisRaw("Mouse Y") * Time.fixedDeltaTime * camSensY;
 
@@ -34,7 +35,8 @@ public class CameraRotation : MonoBehaviour
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
             transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            orientation1.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation2.rotation = Quaternion.Euler(0, yRotation, 0);
         }
         
         if (Input.GetKeyDown(KeyCode.R)){

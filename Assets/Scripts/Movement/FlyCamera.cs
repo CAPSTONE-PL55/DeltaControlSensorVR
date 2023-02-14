@@ -1,50 +1,96 @@
-using UnityEngine;
 using System.Collections;
- 
-public class FlyCamera : MonoBehaviour {
- 
-    /*
-    wasd : basic movement
-    shift : Makes camera accelerate
-    space : Moves camera on X and Z axis only.  So camera doesn't gain any height*/
-     
-    [Header("Camera Settings")]
-    [Tooltip("Regular speed.")]
-    public float mainSpeed = 10.0f; //regular speed
-    [Tooltip("Sprint speed, activated by pressing left shift.")]
-    public float shiftAdd = 20.0f; //multiplied by how long shift is held.  Basically running
-    [Tooltip("Spint speed increases overtime to this speed.")]
-    public float maxShift = 50.0f; //Maximum speed when holdin gshift
-    private float totalRun= 1.0f;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
 
-    void Update () {
-        //Keyboard commands
-        Vector3 p = GetBaseInput();
-        if (p.sqrMagnitude > 0){ // only move while a direction key is pressed
-          if (Input.GetKey (KeyCode.LeftShift)){
-              totalRun += Time.deltaTime;
-              p  = p * totalRun * shiftAdd;
-              p.x = Mathf.Clamp(p.x, -maxShift, maxShift);
-              p.y = Mathf.Clamp(p.y, -maxShift, maxShift);
-              p.z = Mathf.Clamp(p.z, -maxShift, maxShift);
-          } else {
-              totalRun = Mathf.Clamp(totalRun * 0.5f, 1f, 1000f);
-              p = p * mainSpeed;
-          }
-         
-          p = p * Time.deltaTime;
-          Vector3 newPosition = transform.position;
-          if (Input.GetKey(KeyCode.Space)){ //If player wants to move on X and Z axis only
-              transform.Translate(p);
-              newPosition.x = transform.position.x;
-              newPosition.z = transform.position.z;
-              transform.position = newPosition;
-          } else {
-              transform.Translate(p);
-          }
+public class FlyCamera : MonoBehaviour
+{
+    [Header("Movement")]
+    public float moveSpeed = 10.0f;
+    [Tooltip("Sprint speed, activated by pressing left shift.")]
+    public float shiftSpeed = 100.0f;
+    public float virticalSpeed = 1.0f;
+
+    public float drag = 4;
+
+    [Header("Keybinds")]
+    public KeyCode sprintKey = KeyCode.LeftShift;
+    public KeyCode virticalUpKey = KeyCode.Q;
+    public KeyCode virticalDownKey = KeyCode.E;
+
+    public Transform orientation;
+
+    float horizontalInput;
+    float verticalInput;
+    float upDownInput;
+
+    Vector3 moveDirection;
+
+    Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
+
+        rb.drag = 0;
+    }
+
+    private void Update()
+    {
+        MyInput();
+        SpeedControl();
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer();
+    }
+
+    private void MyInput()
+    {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+    }
+
+    private void MovePlayer()
+    {
+        // calculate movement direction
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        //moveDirection = GetBaseInput();
+        if (Input.GetKey(virticalUpKey)) {
+            moveDirection.y += virticalSpeed;
+        } else if (Input.GetKey(virticalDownKey)) {
+            moveDirection.y -= virticalSpeed;
+        }
+
+
+        if (Input.GetKey(sprintKey)) {
+            rb.AddForce(moveDirection.normalized * shiftSpeed * 10f, ForceMode.Force);
+        } else {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        }
+        
+
+        if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.S) || Input.GetKey (KeyCode.A) || Input.GetKey (KeyCode.D)){
+            rb.drag = 0;
+        } else {
+            rb.drag = drag;
         }
     }
-     
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
+
+        // limit velocity if needed
+        if(flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.velocity = new Vector3(limitedVel.x, limitedVel.y, limitedVel.z);
+        }
+    }
+
     private Vector3 GetBaseInput() { //returns the basic values, if it's 0 than it's not active.
         Vector3 p_Velocity = new Vector3();
         if (Input.GetKey (KeyCode.W)){
