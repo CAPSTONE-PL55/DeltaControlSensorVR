@@ -28,8 +28,17 @@ public class WalkthroughMovement : MonoBehaviour
 
     public Transform orientation;
 
+    public AudioSource footstep1;
+    public AudioSource footstep2;
+    public AudioSource footstep3;
+    public AudioSource footstep4;
+    public AudioSource jump;
+    public AudioSource land;
+
     float horizontalInput;
     float verticalInput;
+    float footstepInterval = 0.5f;
+    private int footstep;
 
     Vector3 moveDirection;
 
@@ -41,6 +50,7 @@ public class WalkthroughMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        footstep = 1;
 
         readyToJump = true;
     }
@@ -48,7 +58,14 @@ public class WalkthroughMovement : MonoBehaviour
     private void Update()
     {
         // ground check
+        bool wasGrounded = grounded;
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+
+        // Play audio on landing
+        if (grounded && !wasGrounded) {
+            footstepInterval = Time.time + 0.5f;
+            land.Play();
+        }
 
         MyInput();
         SpeedControl();
@@ -87,8 +104,17 @@ public class WalkthroughMovement : MonoBehaviour
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         // on ground
-        if(grounded)
+        if(grounded) {
+            if (Time.time >= footstepInterval && (moveDirection != new Vector3(0,0,0)))
+            {
+                PlayWalkAudio();
+
+                // Reset the time for the next footstep sound
+                footstepInterval = Time.time + 0.5f;
+            }
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        }
+            
 
         // in air
         else if(!grounded)
@@ -114,10 +140,36 @@ public class WalkthroughMovement : MonoBehaviour
         // reset y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
+        footstepInterval = Time.time + 0.5f;
+        jump.Play();
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
+
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    private void PlayWalkAudio()
+    {
+        switch (footstep)
+        {
+            case 1: 
+                footstep1.Play();
+                footstep ++;
+                break;
+            case 2: 
+                footstep2.Play();
+                footstep ++;
+                break;
+            case 3: 
+                footstep3.Play();
+                footstep ++;
+                break;  
+            default:
+                footstep4.Play();
+                footstep = 1;
+                break;
+        }
     }
 }
