@@ -21,38 +21,28 @@ public class JsonClass
     }
 }
 
-// could potentially add this hubreading in the base M2MqttUnityClient class if all hubs have same defined readings
-public struct HubReading
+[System.Serializable]
+public class SensorObject
 {
-    public double temperature;
-    public double humidity;
-    public double light;
-    public double sound;
-    public double occupancy;
+    public float Present_Value;
+    public string Units;
+    public string updated;
+    public int status;
 
-    public HubReading(double temperature, double humidity, double light, double sound, double occupancy)
-    {
-        this.temperature = temperature;
-        this.humidity = humidity;
-        this.light = light;
-        this.sound = sound;
-        this.occupancy = occupancy;
-    }
 }
 
 [System.Serializable]
 public class mqttReceiver1 : M2MqttUnityClient
 {
+    // define sensorID here to identify which O3 hub to associate current receiver class with
+    // NOTE: could try to find a way to extract O3 hub IP address to use as ID 
+    public int sensorID = 1;
+
+    // initialize a new HubReading instance to store current hub's sensor readings
+    private HubReading readings = new HubReading(0, 0, 0, 0, 0);
+
     [Header("MQTT topics")]
     [Tooltip("Set the topic to subscribe. !!!ATTENTION!!! multi-level wildcard # subscribes to all topics")]
-    // could also potentially move this topic list to base class as well
-    public string[] topics = {
-        "events/object/irTemperature",
-        "events/object/occupantHumidity",
-        "events/object/lightLevel",
-        "events/object/soundLevel",
-        "events/object/combinedOccupancy"
-    };
     public string topicSubscribe = "test1"; // topic to subscribe. !!! The multi-level wildcard # is used to subscribe to all the topics. Attention i if #, subscribe to all topics. Attention if MQTT is on data plan
     [Tooltip("Set the topic to publish (optional)")]
     public string topicPublish = ""; // topic to publish
@@ -109,8 +99,6 @@ public class mqttReceiver1 : M2MqttUnityClient
     // a list to store the messages
     private List<string> eventMessages = new List<string>();
 
-    private HubReading readings = new HubReading(0, 0, 0, 0, 0);
-
     public void Publish()
     {
         client.Publish(topicPublish, System.Text.Encoding.UTF8.GetBytes(messagePublish), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
@@ -155,18 +143,22 @@ public class mqttReceiver1 : M2MqttUnityClient
     }
 
     protected override void SubscribeTopics()
-    {
-        foreach (string topic in topics)
+    {   
+        Debug.Log("Subscribing to topics...");
+        foreach (string topic in this.topics)
         {
-            client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            string topicWithID = this.sensorID.ToString() + topic;
+            client.Subscribe(new string[] { topicWithID }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            Debug.Log($"Subscribed to topic: {topicWithID}");
         }
     }
 
     protected override void UnsubscribeTopics()
     {
-        foreach (string topic in topics)
+        foreach (string topic in this.topics)
         {
-            client.Unsubscribe(new string[] { topic });
+            string topicWithID = this.sensorID.ToString() + topic;
+            client.Unsubscribe(new string[] { topicWithID });
         }
     }
 
@@ -174,17 +166,6 @@ public class mqttReceiver1 : M2MqttUnityClient
     {
         base.Start();
     }
-    
-    [System.Serializable]
-    public class SensorObject
-    {
-        public float Present_Value;
-        public string Units;
-        public string updated;
-        public int status;
-
-    }
-
 
     protected override void DecodeMessage(string topic, byte[] message)
     {
@@ -194,36 +175,20 @@ public class mqttReceiver1 : M2MqttUnityClient
         double presentValue = reading.Present_Value;
 
         Debug.Log($"Json string: {jsonString} | Current Value: {presentValue}");
-        
 
+        if (this.topics[0] != null && (this.sensorID.ToString() + this.topics[0]).Equals(topic)) readings.temperature = presentValue;
+        else if (this.topics[1] != null && (this.sensorID.ToString() + this.topics[1]).Equals(topic)) readings.humidity = presentValue;
+        else if (this.topics[2] != null && (this.sensorID.ToString() + this.topics[2]).Equals(topic)) readings.light = presentValue;
+        else if (this.topics[3] != null && (this.sensorID.ToString() + this.topics[3]).Equals(topic)) readings.sound = presentValue;
+        else if (this.topics[4] != null && (this.sensorID.ToString() + this.topics[4]).Equals(topic)) readings.occupancy = presentValue;
 
-        switch (topic)
-        {
-            case "events/object/irTemperature":
-                readings.temperature = presentValue;
-                break;
-            case "events/object/occupantHumidity":
-                readings.humidity = presentValue;
-                break;
-            case "events/object/lightLevel":
-                readings.light = presentValue;
-                break;
-            case "events/object/soundLevel":
-                readings.sound = presentValue;
-                break;
-            case "events/object/combinedOccupancy":
-                readings.occupancy = presentValue;
-                break;
-            default:
-                break;
-        }
-
+        // this is the data being sent by this receiver class to the associated controller class 
         msg = string.Format("Temp: {0} \n" + "Humidity: {1} \n" + "Light: {2} \n" + "Sound: {3} \n" + "Occupancy: {4} \n",
-            readings.temperature.ToString(),
-            readings.humidity.ToString(),
-            readings.light.ToString(),
-            readings.sound.ToString(),
-            readings.occupancy.ToString());
+            readings.temperature.ToString("0.00"),
+            readings.humidity.ToString("0.00"),
+            readings.light.ToString("0.00"),
+            readings.sound.ToString("0.00"),
+            readings.occupancy.ToString("0.00"));
 
         StoreMessage(msg);
     }
