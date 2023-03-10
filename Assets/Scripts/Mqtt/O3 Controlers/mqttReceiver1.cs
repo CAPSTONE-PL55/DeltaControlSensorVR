@@ -6,6 +6,7 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using System;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 [System.Serializable]
 public class JsonClass
@@ -109,7 +110,7 @@ public class mqttReceiver1 : M2MqttUnityClient
 
     public void Publish(string topicList, string soundData)
     {
-        topicList = string(this.sensorID) + '/' + topicList;
+        topicList = this.sensorID.ToString() + '/' + topicList;
         // Define your JSON object
         var mySoundObject = new
         {
