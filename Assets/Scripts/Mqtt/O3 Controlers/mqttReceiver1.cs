@@ -45,8 +45,10 @@ public class mqttReceiver1 : M2MqttUnityClient
     [Tooltip("Set the topic to subscribe. !!!ATTENTION!!! multi-level wildcard # subscribes to all topics")]
     public string topicSubscribe = "test1"; // topic to subscribe. !!! The multi-level wildcard # is used to subscribe to all the topics. Attention i if #, subscribe to all topics. Attention if MQTT is on data plan
     [Tooltip("Set the topic to publish (optional)")]
-    public string topicPublish = ""; // topic to publish
-    public string messagePublish = ""; // message to publish
+    public string topicPublish = "commands/object/soundfile"; // topic to publish
+    public string sampleSound = "(1) Power On.wav";
+
+    public string messagePublish = "testing...."; // message to publish
 
     [Tooltip("Set this to true to perform a testing cycle automatically on startup")]
     public bool autoTest = false;
@@ -99,10 +101,33 @@ public class mqttReceiver1 : M2MqttUnityClient
     // a list to store the messages
     private List<string> eventMessages = new List<string>();
 
-    public void Publish()
+    //public void Publish(string messagePublish)
+    //{
+    //    client.Publish(topicPublish, System.Text.Encoding.UTF8.GetBytes(messagePublish), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+    //    Debug.Log("Test message published to local topic on local mosquitto broker");
+    //}
+
+    public void Publish(string topicList, string soundData)
     {
-        client.Publish(topicPublish, System.Text.Encoding.UTF8.GetBytes(messagePublish), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
-        Debug.Log("Test message published");
+        topicList = string(this.sensorID) + '/' + topicList;
+        // Define your JSON object
+        var mySoundObject = new
+        {
+            data = soundData,
+        };
+
+        // Convert the object to a byte array
+        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(mySoundObject));
+
+        if (client != null && client.IsConnected)
+        {
+            client.Publish(topicList, bytes);
+            Debug.Log("Test message published");
+        }
+        else
+        {
+            Debug.Log("Client is not connected");
+        }
     }
 
     public void SetEncrypted(bool isEncrypted)
@@ -115,6 +140,16 @@ public class mqttReceiver1 : M2MqttUnityClient
         base.OnConnecting();
     }
 
+    //protected override void OnConnected()
+    //{
+    //    base.OnConnected();
+    //    isConnected = true;
+
+    //    if (autoTest)
+    //    {
+    //        Publish();
+    //    }
+    //}
     protected override void OnConnected()
     {
         base.OnConnected();
@@ -122,7 +157,7 @@ public class mqttReceiver1 : M2MqttUnityClient
 
         if (autoTest)
         {
-            Publish();
+            Publish(topicPublish, sampleSound);
         }
     }
 
