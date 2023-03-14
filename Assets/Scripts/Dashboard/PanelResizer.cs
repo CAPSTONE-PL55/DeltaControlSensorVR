@@ -43,9 +43,8 @@ public class PanelResizer : MonoBehaviour
         if (isResized)
         {
             resizeButton.GetComponentInChildren<Text>().text = "Hide Dashboard";
-            panelRectTransform.sizeDelta = new Vector2(panelRectTransform.sizeDelta.x, 300f);
-            panelRectTransform.anchoredPosition = new Vector2(panelRectTransform.anchoredPosition.x, -150f);
-            //resizeButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(resizeButton.GetComponent<RectTransform>().anchoredPosition.x, -50f);
+            panelRectTransform.sizeDelta = new Vector2(panelRectTransform.sizeDelta.x, 340f);
+            panelRectTransform.anchoredPosition = new Vector2(panelRectTransform.anchoredPosition.x, -170f);
 
             panelContent.SetActive(true);
             isResized = false;
@@ -55,7 +54,6 @@ public class PanelResizer : MonoBehaviour
             resizeButton.GetComponentInChildren<Text>().text = "Show Dashboard";
             panelRectTransform.sizeDelta = new Vector2(panelRectTransform.sizeDelta.x, 66f);
             panelRectTransform.anchoredPosition = new Vector2(panelRectTransform.anchoredPosition.x, -33f);
-            //resizeButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(resizeButton.GetComponent<RectTransform>().anchoredPosition.x, -50f);
 
             panelContent.SetActive(false);
             isResized = true;
