@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: StormCloudParticle
   m_Shader: {fileID: 4800000, guid: cf81c85f95fe47e1a27f6ae460cf182c, type: 3}
-  m_ShaderKeywords: _EMISSION _WINDQUALITY_NONE
-  m_LightmapFlags: 2
+  m_ShaderKeywords: _NORMALMAP _WINDQUALITY_NONE
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlbedoMap:
+        m_Texture: {fileID: 2800000, guid: f0f137a9e20dd82448c39df561615d24, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BASE_COLOR_MAP:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -32,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: aa748bb25f802de4fb3622d6963a538e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Control:
@@ -44,6 +48,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -75,6 +83,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _LayerAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LayerMaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LayerNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LayerWeightMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _LightMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -100,6 +124,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mask3:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -129,6 +157,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Normal3:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: aa748bb25f802de4fb3622d6963a538e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -220,14 +252,21 @@ Material:
     - _Cull: 2
     - _CullMode: 0
     - _Cutoff: 0.5
+    - _DetailAlbedoStrength: 1
     - _DetailNormalMapScale: 1
+    - _DetailNormalStrength: 1
+    - _DetailSmoothnessStrength: 1
     - _Diffuse: 0.5
+    - _DisplacementAmount: 0.5
+    - _DisplacementMipLod: 1
     - _DistortionBlend: 0.5
     - _DistortionEnabled: 0
     - _DistortionStrength: 1
     - _DistortionStrengthScaled: 0.1
     - _DstBlend: 0
     - _EMISSION_WEIGHT: 1
+    - _EmissionEnabled: 0
+    - _EmissionStrength: 1
     - _EnableHeightBlend: 0
     - _EnableInstancedPerPixelNormal: 1
     - _FaceDilate: 0
@@ -247,7 +286,17 @@ Material:
     - _HeightTransition: 0
     - _HueVariationKwToggle: 0
     - _InvFade: 1
+    - _LayerAngleMin: 0
+    - _LayerBlendContrast: 0.7
+    - _LayerBlendMode: 1
+    - _LayerChannel: 0
+    - _LayerHeight: 0
+    - _LayerInvertHeight: 0
+    - _LayerNormalStrength: 1
+    - _LayerStrength: 1
+    - _LayerTextureSpace: 0
     - _LightAngle: 3.1416
+    - _LightingEnabled: 1
     - _METALNESS: 0
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
@@ -258,6 +307,7 @@ Material:
     - _Metallic3: 0
     - _Mode: 0
     - _NormalMapKwToggle: 0
+    - _NormalStrength: 1
     - _NumLayersCount: 1
     - _OcclusionStrength: 1
     - _OutlineShininess: 0
@@ -302,6 +352,8 @@ Material:
     - _SubsurfaceKwToggle: 0
     - _Surface: 0
     - _TRANSPARENCY: 0
+    - _TessEdgeLength: 20
+    - _TessSubDiv: 12
     - _TextureHeight: 512
     - _TextureWidth: 512
     - _TwoSided: 2
@@ -310,6 +362,9 @@ Material:
     - _UnderlayOffsetX: 0
     - _UnderlayOffsetY: 0
     - _UnderlaySoftness: 0
+    - _UseDetail: 0
+    - _UseEmission: 0
+    - _UseMaskMap: 0
     - _UseUIAlphaClip: 0
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
@@ -321,7 +376,7 @@ Material:
     - _BASE_COLOR: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
-    - _CameraFadeParams: {r: 0, g: 0, b: 0, a: 0}
+    - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _Color: {r: 0.3602941, g: 0.3602941, b: 0.3602941, a: 1}
     - _EMISSION_COLOR: {r: 0, g: 0, b: 0, a: 0}
@@ -330,6 +385,7 @@ Material:
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
     - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
     - _HueVariationColor: {r: 1, g: 0.5, b: 0, a: 0.1}
+    - _LayerTint: {r: 1, g: 1, b: 1, a: 1}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _REFLECTIONS_COLOR: {r: 1, g: 1, b: 1, a: 1}
@@ -339,6 +395,7 @@ Material:
     - _SpecColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _SubsurfaceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Tint: {r: 1, g: 1, b: 1, a: 1}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
