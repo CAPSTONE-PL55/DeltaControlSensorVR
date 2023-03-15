@@ -12,6 +12,8 @@ public class ManageToggles : MonoBehaviour
     public Toggle occupancy;
     public Toggle all;
 
+    public GameObject rain;
+
     private bool toggleAll = true;
 
     // Start is called before the first frame update
@@ -44,6 +46,12 @@ public class ManageToggles : MonoBehaviour
                 toggleAll = false;
                 all.isOn = false;
             }
+        }
+
+        if (humidity.isOn) {
+            rain.SetActive(true);
+        } else {
+            rain.SetActive(false);
         }
     }
 
