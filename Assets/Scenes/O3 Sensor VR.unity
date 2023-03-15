@@ -3068,7 +3068,7 @@ MonoBehaviour:
   sound: {fileID: 233229523}
   occupancy: {fileID: 2026105716}
   all: {fileID: 401359838}
-  rain: {fileID: 0}
+  rain: {fileID: 8994512762682391472}
 --- !u!1 &556812490
 GameObject:
   m_ObjectHideFlags: 0
@@ -87396,3 +87396,78 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d09e9e7f1d641474882cd7357e6b1630, type: 3}
+--- !u!1001 &7295677981604683281
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1868318520711390624, guid: 3f4e83da77c320a44a0744985b1ccfdd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868318520711390624, guid: 3f4e83da77c320a44a0744985b1ccfdd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.571
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868318520711390624, guid: 3f4e83da77c320a44a0744985b1ccfdd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868318520711390624, guid: 3f4e83da77c320a44a0744985b1ccfdd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.196555
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868318520711390624, guid: 3f4e83da77c320a44a0744985b1ccfdd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868318520711390624, guid: 3f4e83da77c320a44a0744985b1ccfdd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868318520711390624, guid: 3f4e83da77c320a44a0744985b1ccfdd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868318520711390624, guid: 3f4e83da77c320a44a0744985b1ccfdd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868318520711390624, guid: 3f4e83da77c320a44a0744985b1ccfdd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868318520711390624, guid: 3f4e83da77c320a44a0744985b1ccfdd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868318520711390624, guid: 3f4e83da77c320a44a0744985b1ccfdd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868318520711390625, guid: 3f4e83da77c320a44a0744985b1ccfdd,
+        type: 3}
+      propertyPath: m_Name
+      value: Humidity
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3f4e83da77c320a44a0744985b1ccfdd, type: 3}
+--- !u!1 &8994512762682391472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1868318520711390625, guid: 3f4e83da77c320a44a0744985b1ccfdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 7295677981604683281}
+  m_PrefabAsset: {fileID: 0}
