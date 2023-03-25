@@ -5,27 +5,58 @@ using UnityEngine;
 
 public class ManageToggles : MonoBehaviour
 {
-    public Toggle temperature;
-    public Toggle humidity;
-    public Toggle luminance;
-    public Toggle sound;
-    public Toggle occupancy;
-    public Toggle all;
+    public GameObject togglesObj;
 
     public GameObject rain;
+    public GameObject notes;
 
     private bool toggleAll = true;
+    private Toggle temperature;
+    private Toggle humidity;
+    private Toggle luminance;
+    private Toggle sound;
+    private Toggle occupancy;
+    private Toggle all;
 
     // Start is called before the first frame update
     void Start()
     {
-        all.onValueChanged.AddListener(delegate {ToggleAll();});
-        temperature.onValueChanged.AddListener(delegate {SetAll();});
-        humidity.onValueChanged.AddListener(delegate {SetAll();});
-        luminance.onValueChanged.AddListener(delegate {SetAll();});
-        sound.onValueChanged.AddListener(delegate {SetAll();});
-        occupancy.onValueChanged.AddListener(delegate {SetAll();});
+        Transform parentTransform = togglesObj.transform;
 
+        // Loop through all the direct children of the parent
+        for (int i = 0; i < parentTransform.childCount; i++)
+        {
+            Transform childTransform = parentTransform.GetChild(i);
+            Toggle toggle = childTransform.GetComponent<Toggle>();
+
+            Transform labelObj = childTransform.Find("Label");
+            Text labelText = labelObj.GetComponent<Text>();
+
+            if (labelText.text == "All") {
+                toggle.onValueChanged.AddListener(delegate {ToggleAll();});
+                all = toggle;
+            } else {
+                toggle.onValueChanged.AddListener(delegate {SetAll();});
+                switch (labelText.text)
+                {
+                    case "Temperature":
+                        temperature = toggle;
+                        break;
+                    case "Humidity":
+                        humidity = toggle;
+                        break;
+                    case "Luminance":
+                        luminance = toggle;
+                        break;
+                    case "Sound":
+                        sound = toggle;
+                        break;   
+                    default:
+                        occupancy = toggle;
+                        break;
+                }
+            }
+        }
     }
 
     // Update is called once per frame
@@ -52,6 +83,12 @@ public class ManageToggles : MonoBehaviour
             rain.SetActive(true);
         } else {
             rain.SetActive(false);
+        }
+
+        if (sound.isOn) {
+            notes.SetActive(true);
+        } else {
+            notes.SetActive(false);
         }
     }
 
