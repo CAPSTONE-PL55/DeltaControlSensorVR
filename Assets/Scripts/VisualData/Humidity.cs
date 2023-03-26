@@ -2,18 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Works when placed in sensor object
 public class Humidity : MonoBehaviour
 {
-
-    public GameObject rain;
-    public GameObject rainRipple;
-    public GameObject drip;
-    public GameObject dripRipple;
-    public GameObject stormClouds;
-
     private int humidity = 45;
     private ParticleSystem rainParticleSystem;
     private ParticleSystem dripParticleSystem;
+    private GameObject stormClouds;
+    private GameObject rainRipple;
+    private GameObject dripRipple;
 
     private List<ParticleSystem.Burst> lowDrip;
     private List<ParticleSystem.Burst> highDrip;
@@ -21,8 +18,15 @@ public class Humidity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Transform sensor = transform.Find("Humidity");
+        Transform drip = sensor.Find("Drip");
+        Transform rain = sensor.Find("Rain");
+
+        stormClouds = sensor.Find("StormCloudEffect").gameObject;
         rainParticleSystem =  rain.GetComponent<ParticleSystem>();
         dripParticleSystem =  drip.GetComponent<ParticleSystem>();
+        rainRipple = rain.Find("Ripple").gameObject;
+        dripRipple = drip.Find("Ripple").gameObject;
 
         SetBurstLists();
         //SetParticlesActive(true, false, false, false, false);
@@ -37,7 +41,6 @@ public class Humidity : MonoBehaviour
         if (tempHumid != humidity) {
             CheckHumidity();
         }
-        
     }
 
     // Set the burst lists for drip frequency on very dry and dry conditions
@@ -85,9 +88,11 @@ public class Humidity : MonoBehaviour
 
     void SetParticlesActive(bool r, bool rR, bool d, bool dR, bool sC)
     {
-        rain.SetActive(r);
-        rainRipple.SetActive(rR);
-        drip.SetActive(d);
+        transform.Find("Humidity").Find("Rain").gameObject.SetActive(r);
+        Debug.Log("rR: " + rR);
+        rainRipple.SetActive(rR); 
+        transform.Find("Humidity").Find("Drip").gameObject.SetActive(d);
+        Debug.Log("dR: " + dR);
         dripRipple.SetActive(dR);
         stormClouds.SetActive(sC);
 
