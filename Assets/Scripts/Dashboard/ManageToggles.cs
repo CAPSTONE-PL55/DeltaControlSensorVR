@@ -7,9 +7,6 @@ public class ManageToggles : MonoBehaviour
 {
     public GameObject togglesObj;
 
-    public GameObject rain;
-    public GameObject notes;
-
     private bool toggleAll = true;
     private Toggle temperature;
     private Toggle humidity;
@@ -79,16 +76,27 @@ public class ManageToggles : MonoBehaviour
             }
         }
 
-        if (humidity.isOn) {
-            rain.SetActive(true);
-        } else {
-            rain.SetActive(false);
+        // Manage visiblilty based on toggles by itterating through sensors
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform child = transform.GetChild(i);
+            GameObject notes = child.Find("MusicNotes").gameObject;
+            if (sound.isOn) {
+                notes.SetActive(true);
+            } else {
+                notes.SetActive(false);
+            }
         }
 
-        if (sound.isOn) {
-            notes.SetActive(true);
-        } else {
-            notes.SetActive(false);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform child = transform.GetChild(i);
+            GameObject rain = child.Find("Humidity").gameObject;
+            if (humidity.isOn) {
+                rain.SetActive(true);
+            } else {
+                rain.SetActive(false);
+            }
         }
     }
 

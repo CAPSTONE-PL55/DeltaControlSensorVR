@@ -71,10 +71,10 @@ public class Sound : MonoBehaviour
     // Temp, sets sound based on keys, remove this later
     void SetSoundValue()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && sound < 100) {
+        if (Input.GetKeyDown(KeyCode.P) && sound < 100) {
             sound += 10;
             Debug.Log("Sound: " + sound);
-        } else if (Input.GetKeyDown(KeyCode.DownArrow) && sound > 0) {
+        } else if (Input.GetKeyDown(KeyCode.L) && sound > 0) {
             sound -= 10;
             Debug.Log("Sound: " + sound);
         } 
