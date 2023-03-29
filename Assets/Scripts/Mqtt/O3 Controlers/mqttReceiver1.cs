@@ -6,7 +6,7 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using System;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 
 [System.Serializable]
 public class JsonClass
@@ -110,7 +110,9 @@ public class mqttReceiver1 : M2MqttUnityClient
 
     public void Publish(string topicList, string soundData)
     {
-        topicList = this.sensorID.ToString() + '/' + topicList;
+        Debug.Log("the topicList being sent to Publish() is: " + topicList);
+        Debug.Log("the soundData being sent to Publish() is: " + soundData);
+        // topicList = this.sensorID.ToString() + '/' + topicList;
         // Define your JSON object
         var mySoundObject = new
         {
@@ -118,12 +120,13 @@ public class mqttReceiver1 : M2MqttUnityClient
         };
 
         // Convert the object to a byte array
-        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(mySoundObject));
+        // byte[] bytes = System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(mySoundObject));
+        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(soundData);
 
         if (client != null && client.IsConnected)
         {
             client.Publish(topicList, bytes);
-            Debug.Log("Test message published");
+            Debug.Log("Publish() method ran from within the receiver class");
         }
         else
         {
