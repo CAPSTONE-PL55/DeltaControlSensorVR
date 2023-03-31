@@ -10,38 +10,68 @@ public class Occupancy : MonoBehaviour
 
     private MeshRenderer meshRenderer;
     private Material material;
-    private bool changeState = false;
     private Material[] materials;
-    private GameObject[] stickmenAvatars;
 
+    // Initiallize array of materials for avatars and set all alphas to 0
     private void Start()
     {
-        stickmenAvatars = new GameObject[occupancyLimit];
+        //stickmenAvatars = new GameObject[occupancyLimit];
         materials = new Material[occupancyLimit];
 
-        for (int i = 1; i < occupancyLimit; i++) 
+        for (int i = 0; i < occupancyLimit; i++) 
         {
             GameObject stickmanAvatar = transform.Find("Occupancy").Find(string.Concat("Stickman", i)).gameObject;
-            stickmanAvatar.SetActive(false);
             meshRenderer = stickmanAvatar.GetComponent<MeshRenderer>();
-            materials[i] = meshRenderer.material;
-            materials[i].color = new Color(materials[i].color.r, materials[i].color.g, materials[i].color.b, 0);
-            
-            stickmenAvatars[i] = stickmanAvatar;
+
+            Material material = meshRenderer.material;
+            material.color = new Color(material.color.r, material.color.g, material.color.b, 0);
+            materials[i] = material;
         }
         
     }
 
+    // Based on the current occupancy level, update the number of visable occupants and set oppcupant colour
     private void Update()
     {
-        
-        // Every time
-        //if (stickmanAvatar.activeSelf && material.color.a < 1)
-        //{
-        //    float alpha = Mathf.Lerp(material.color.a, 1, Time.deltaTime / fadeTime);
-        //    material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
-        //}
+        if (Input.GetKeyDown(KeyCode.O)) {
+            occupancy += 1;
+        } else if (Input.GetKeyDown(KeyCode.K) && occupancy > 0) {
+            occupancy -= 1;
+        } 
+        for (int i = 0; i < occupancyLimit; i++)
+        {
+            Material material = materials[i];
 
-        
+            // Change visiblity based on current occupancy
+            if ((occupancy > i) && material.color.a < 1)
+            {
+               ChangeAlpha(material, 1.0f);
+            } 
+            else if ((occupancy <= i) && material.color.a > 0)
+            {
+                ChangeAlpha(material, 0.0f);
+            }
+
+            // Change colour of all avatars under certain occupancy levels (checks if material already has colour to apply first)
+            float percentOccupied = occupancy / (float) occupancyLimit;
+            if (percentOccupied < 0.75f && material.color.r != 19/255f)
+            {
+                material.color = new Color(19/255f, 149/255f, 26/255f, material.color.a);
+            }
+            else if (percentOccupied < 1.0f && material.color.r != 180/255f)
+            {
+                material.color = new Color(180/255f, 100/255f, 14/255f, material.color.a);
+            }
+            else if (material.color.r != 220/255f)
+            {
+                material.color = new Color(220/255f, 40/255f, 10/255f, material.color.a);
+            }
+        }
+    }
+
+    private void ChangeAlpha(Material material, float targetAlpha)
+    {
+        float alpha = Mathf.Lerp(material.color.a, targetAlpha, Time.deltaTime / fadeTime);
+        material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
     }
 }
