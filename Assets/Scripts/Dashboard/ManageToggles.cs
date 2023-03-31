@@ -56,12 +56,7 @@ public class ManageToggles : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Manages logic for each time a regular toggle (not all) is changed
     void SetAll() 
     {
         if (temperature.isOn && humidity.isOn && luminance.isOn && sound.isOn && occupancy.isOn) {
@@ -80,26 +75,31 @@ public class ManageToggles : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             Transform child = transform.GetChild(i);
+
             GameObject notes = child.Find("MusicNotes").gameObject;
             if (sound.isOn) {
                 notes.SetActive(true);
             } else {
                 notes.SetActive(false);
             }
-        }
 
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            Transform child = transform.GetChild(i);
             GameObject rain = child.Find("Humidity").gameObject;
             if (humidity.isOn) {
                 rain.SetActive(true);
             } else {
                 rain.SetActive(false);
             }
+
+            GameObject occupants = child.Find("Occupancy").gameObject;
+            if (occupancy.isOn) {
+                occupants.SetActive(true);
+            } else {
+                occupants.SetActive(false);
+            }
         }
     }
 
+    // Handles logic for toggling all (sets all toggles on or off, is only set to true when all other toggles are true)
     void ToggleAll()
     {
         if (all.isOn) {
