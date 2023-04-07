@@ -8,12 +8,14 @@ using M2MqttUnity;
 public class PlayMessages : MonoBehaviour
 {
     // each index represents one of the dropdowns. The value at each index indicates which sensor is selected
-    private int[] dropdownValues = new int[] { 0, 0, 0 };
     public mqttReceiver1 mqttReceiver1;
     public mqttReceiver1 mqttReceiver2;
 
     public Sprite playSprite;
     public Sprite retrySprite;
+
+    private int[] dropdownValues = new int[] { 0, 0, 0 };
+    private string voiceCueTopicList = "commands/object/soundfile";
 
 
     // Start is called before the first frame update
@@ -63,46 +65,55 @@ public class PlayMessages : MonoBehaviour
                     Debug.Log("Button clicked: " + textField.text);
                     Debug.Log("value of index: " + index);
 
-                    // replace hardcoded sound file with the output of private helper function to map textField.text to sound file
-                    string soundFile;
+                    string soundFile = DetermineSoundFile(textField.text.Trim());
                     Debug.Log("the textField.text value is: "+ textField.text);
 
-                    if(textField.text.Trim().Equals("FIRE ALARM"))
-                    {
-                        soundFile = "test fire alarm";
-                    }
-                    else if(textField.text.Trim().Equals("TIME IS UP"))
-                    {
-                        soundFile = "test time is up";
-                    }
-                    else if(textField.text.Trim().Equals("5 MINUTE WARNING"))
-                    {
-                        soundFile = "test 5 minute warning";
-                    }
-                    else
-                    {
-                        soundFile = "garbage value";
-                    }
-
+                    // publish the soundFile to the appropriate O3 device depending on dropdown selection
                     if(dropdownValues[index] == 0)
                     {
-                        mqttReceiver1.Publish("commands/object/soundfile", soundFile);
+                        mqttReceiver1.Publish(voiceCueTopicList, soundFile);
                     }
                     else if(dropdownValues[index] == 1)
                     {
-                        mqttReceiver2.Publish("commands/object/soundfile", soundFile);
+                        mqttReceiver2.Publish(voiceCueTopicList, soundFile);
                     }
                     else
                     {
-                        mqttReceiver1.Publish("commands/object/soundfile", soundFile);
-                        mqttReceiver2.Publish("commands/object/soundfile", soundFile);
+                        mqttReceiver1.Publish(voiceCueTopicList, soundFile);
+                        mqttReceiver2.Publish(voiceCueTopicList, soundFile);
                     }
 
-                    // mqttReceiver.Publish("commands/object/soundfile", "(1) Power On.wav");
                     imageComponent.sprite = retrySprite;
                 });
             }            
         }
+    }
+
+    // determines which soundfile to publish based on the textField text read in from dropdown selection
+    private string DetermineSoundFile(string text)
+    {
+        // replace the placeholder outputFile strings below with actual O3 Edge soundfiles
+        // i.e "(1) Power On.wav"
+        string outputFile = "";
+
+        if (text.Equals("\"FIRE ALARM\""))
+        {
+            outputFile = "fire alarm";
+        }
+        else if (text.Equals("\"TIME IS UP\""))
+        {
+            outputFile = "time is up";
+        }
+        else if (text.Equals("\"5 MINUTE WARNING\""))
+        {
+            outputFile = "5 minute warning";
+        }
+        else
+        {
+            outputFile = "null";
+        }
+
+        return outputFile;
     }
 
     // Update is called once per frame

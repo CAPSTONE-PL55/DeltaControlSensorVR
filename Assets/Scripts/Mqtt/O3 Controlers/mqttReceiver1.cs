@@ -6,7 +6,7 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using System;
 using System.Text.RegularExpressions;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 
 [System.Serializable]
 public class JsonClass
@@ -102,31 +102,26 @@ public class mqttReceiver1 : M2MqttUnityClient
     // a list to store the messages
     private List<string> eventMessages = new List<string>();
 
-    //public void Publish(string messagePublish)
-    //{
-    //    client.Publish(topicPublish, System.Text.Encoding.UTF8.GetBytes(messagePublish), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
-    //    Debug.Log("Test message published to local topic on local mosquitto broker");
-    //}
-
-    public void Publish(string topicList, string soundData)
+    public void Publish(string topicList, string soundFile)
     {
         Debug.Log("the topicList being sent to Publish() is: " + topicList);
-        Debug.Log("the soundData being sent to Publish() is: " + soundData);
+        Debug.Log("the soundData being sent to Publish() is: " + soundFile);
+        // modify topicList to identify which O3 Hub the soundFile will be associated with
         // topicList = this.sensorID.ToString() + '/' + topicList;
-        // Define your JSON object
+
+        // Define your JSON sound object
         var mySoundObject = new
         {
-            data = soundData,
+            data = soundFile,
         };
 
-        // Convert the object to a byte array
-        // byte[] bytes = System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(mySoundObject));
-        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(soundData);
+        // Convert the sound object to a byte array
+        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(mySoundObject));
+        // byte[] bytes = System.Text.Encoding.UTF8.GetBytes(soundData);
 
         if (client != null && client.IsConnected)
         {
             client.Publish(topicList, bytes);
-            Debug.Log("Publish() method ran from within the receiver class");
         }
         else
         {
@@ -144,16 +139,6 @@ public class mqttReceiver1 : M2MqttUnityClient
         base.OnConnecting();
     }
 
-    //protected override void OnConnected()
-    //{
-    //    base.OnConnected();
-    //    isConnected = true;
-
-    //    if (autoTest)
-    //    {
-    //        Publish();
-    //    }
-    //}
     protected override void OnConnected()
     {
         base.OnConnected();
