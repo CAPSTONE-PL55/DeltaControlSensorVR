@@ -6,6 +6,7 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using System;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 [System.Serializable]
 public class JsonClass
@@ -45,8 +46,10 @@ public class mqttReceiver1 : M2MqttUnityClient
     [Tooltip("Set the topic to subscribe. !!!ATTENTION!!! multi-level wildcard # subscribes to all topics")]
     public string topicSubscribe = "test1"; // topic to subscribe. !!! The multi-level wildcard # is used to subscribe to all the topics. Attention i if #, subscribe to all topics. Attention if MQTT is on data plan
     [Tooltip("Set the topic to publish (optional)")]
-    public string topicPublish = ""; // topic to publish
-    public string messagePublish = ""; // message to publish
+    public string topicPublish = "commands/object/soundfile"; // topic to publish
+    public string sampleSound = "(1) Power On.wav";
+
+    public string messagePublish = "testing...."; // message to publish
 
     [Tooltip("Set this to true to perform a testing cycle automatically on startup")]
     public bool autoTest = false;
@@ -99,10 +102,31 @@ public class mqttReceiver1 : M2MqttUnityClient
     // a list to store the messages
     private List<string> eventMessages = new List<string>();
 
-    public void Publish()
+    public void Publish(string topicList, string soundFile)
     {
-        client.Publish(topicPublish, System.Text.Encoding.UTF8.GetBytes(messagePublish), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
-        Debug.Log("Test message published");
+        Debug.Log("the topicList being sent to Publish() is: " + topicList);
+        Debug.Log("the soundData being sent to Publish() is: " + soundFile);
+        // modify topicList to identify which O3 Hub the soundFile will be associated with
+        // topicList = this.sensorID.ToString() + '/' + topicList;
+
+        // Define your JSON sound object
+        var mySoundObject = new
+        {
+            data = soundFile,
+        };
+
+        // Convert the sound object to a byte array
+        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(mySoundObject));
+        // byte[] bytes = System.Text.Encoding.UTF8.GetBytes(soundData);
+
+        if (client != null && client.IsConnected)
+        {
+            client.Publish(topicList, bytes);
+        }
+        else
+        {
+            Debug.Log("Client is not connected");
+        }
     }
 
     public void SetEncrypted(bool isEncrypted)
@@ -122,7 +146,7 @@ public class mqttReceiver1 : M2MqttUnityClient
 
         if (autoTest)
         {
-            Publish();
+            Publish(topicPublish, sampleSound);
         }
     }
 
