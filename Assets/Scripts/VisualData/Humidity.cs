@@ -57,13 +57,13 @@ public class Humidity : MonoBehaviour
     // Based on current humidity, set current display level
     void CheckHumidity()
     {
-        if (humidity < 25) { // Very dry
+        if (humidity <= 20) { // Very dry
             SetParticlesActive(false, false, true, false, false);
-        } else if (humidity < 40) { // Dry
+        } else if (humidity <= 30) { // Dry
             SetParticlesActive(false, false, true, true, false);
-        } else if (humidity < 60) { // Ideal
+        } else if (humidity <= 50) { // Ideal
             SetParticlesActive(true, false, false, false, false);
-        } else if (humidity < 70) { // Wet
+        } else if (humidity <= 60) { // Wet
             SetParticlesActive(true, true, false, false, false);
         } else { // Very wet
             SetParticlesActive(true, true, false, false, true);
