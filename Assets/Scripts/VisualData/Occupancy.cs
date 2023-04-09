@@ -54,9 +54,13 @@ public class Occupancy : MonoBehaviour
 
             // Change colour of all avatars under certain occupancy levels (checks if material already has colour to apply first)
             float percentOccupied = occupancy / (float) occupancyLimit;
-            if (percentOccupied < 0.75f && material.color.r != 19/255f)
+            if (percentOccupied <= 0.25f && material.color.r != 19/255f)
             {
                 material.color = new Color(19/255f, 149/255f, 26/255f, material.color.a);
+            }
+            else if (percentOccupied <= 0.75f && material.color.r != 235/255f)
+            {
+                material.color = new Color(235/255f, 230/255f, 15/255f, material.color.a);
             }
             else if (percentOccupied < 1.0f && material.color.r != 180/255f)
             {
