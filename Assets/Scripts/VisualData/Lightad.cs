@@ -15,7 +15,7 @@ public class Lightad : MonoBehaviour
     void Start()
     {
         myLight = GetComponent<Light>();
-        InvokeRepeating("getreadings", 2.0f, 1.0f);
+        InvokeRepeating("getreadings", 0.0f, 1.0f);
     }
     
     void getreadings()

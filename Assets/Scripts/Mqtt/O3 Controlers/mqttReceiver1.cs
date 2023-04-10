@@ -40,7 +40,7 @@ public class mqttReceiver1 : M2MqttUnityClient
     public int sensorID = 1;
 
     // initialize a new HubReading instance to store current hub's sensor readings
-    public HubReading readings = new HubReading(10, 0, 1000, 0, 0);
+    public HubReading readings = new HubReading(0, 0, 0, 0, 0);
 
     [Header("MQTT topics")]
     [Tooltip("Set the topic to subscribe. !!!ATTENTION!!! multi-level wildcard # subscribes to all topics")]
