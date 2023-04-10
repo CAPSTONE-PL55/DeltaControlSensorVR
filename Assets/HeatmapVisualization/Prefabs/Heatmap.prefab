@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2217986287021934444}
   - component: {fileID: 8358979320898419164}
   - component: {fileID: 317201270439893159}
+  - component: {fileID: 5136773153569053874}
   m_Layer: 0
   m_Name: Heatmap
   m_TagString: Untagged
@@ -28,8 +29,7 @@ Transform:
   m_GameObject: {fileID: 9056879332494175312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5.5, y: 1, z: 6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -53,7 +53,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -98,15 +97,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gaussianComputeShader: {fileID: 7200000, guid: ef6e825254ce8924d8e26b2f26b712c2,
     type: 3}
-  settings:
-    bounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 5, y: 5, z: 5}
-    resolution: {x: 64, y: 64, z: 64}
-    cutoffMethod: 0
-    cutoffPercentage: 1
-    gaussStandardDeviation: 1
-  colormap:
+  resolution: {x: 64, y: 64, z: 64}
+  cutoffMethod: 0
+  cutoffPercentage: 1
+  gaussStandardDeviation: 1
+  colormap1:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0.502, a: 0}
+    key1: {r: 0, g: 0.165, b: 1, a: 1}
+    key2: {r: 0, g: 0.827, b: 1, a: 0}
+    key3: {r: 0.494, g: 1, b: 0.506, a: 0}
+    key4: {r: 1, g: 0.843, b: 0, a: 0}
+    key5: {r: 1, g: 0.18, b: 0, a: 0}
+    key6: {r: 0.514, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 10923
+    ctime2: 21845
+    ctime3: 32768
+    ctime4: 43690
+    ctime5: 54613
+    ctime6: 65535
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 7
+    m_NumAlphaKeys: 2
+  colormap2:
     serializedVersion: 2
     key0: {r: 0.05038205, g: 0.029801736, b: 0.5279751, a: 0}
     key1: {r: 0.3278469, g: 0.0066313935, b: 0.6402853, a: 1}
@@ -135,5 +159,107 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 8
     m_NumAlphaKeys: 2
+  colormap3:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 0}
+    key1: {r: 0.25676185, g: 0.08862237, b: 0.069002345, a: 1}
+    key2: {r: 0.50229955, g: 0.12275206, b: 0.10654041, a: 0}
+    key3: {r: 0.73531544, g: 0.19823204, b: 0.12428036, a: 0}
+    key4: {r: 0.87714356, g: 0.3949051, b: 0.038163286, a: 0}
+    key5: {r: 0.9112324, g: 0.63172436, b: 0.10048202, a: 0}
+    key6: {r: 0.9072007, g: 0.8550026, b: 0.18879409, a: 0}
+    key7: {r: 1, g: 1, b: 1, a: 0}
+    ctime0: 0
+    ctime1: 9362
+    ctime2: 18724
+    ctime3: 28086
+    ctime4: 37449
+    ctime5: 46811
+    ctime6: 56173
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 8
+    m_NumAlphaKeys: 2
+  colormap4:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 0}
+    key1: {r: 0.13955706, g: 0.021982793, b: 0.45984027, a: 1}
+    key2: {r: 0.028425818, g: 0.24267453, b: 0.58728105, a: 0}
+    key3: {r: 0.021455556, g: 0.4492082, b: 0.3816969, a: 0}
+    key4: {r: 0.03062584, g: 0.62545586, b: 0.08291294, a: 0}
+    key5: {r: 0.43953004, g: 0.76744944, b: 0.03721291, a: 0}
+    key6: {r: 0.9795489, g: 0.8152887, b: 0.57165205, a: 0}
+    key7: {r: 1, g: 1, b: 1, a: 0}
+    ctime0: 0
+    ctime1: 9362
+    ctime2: 18724
+    ctime3: 28086
+    ctime4: 37449
+    ctime5: 46811
+    ctime6: 56173
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 8
+    m_NumAlphaKeys: 2
+  colormap5:
+    serializedVersion: 2
+    key0: {r: 0.26700398, g: 0.0048725656, b: 0.32941508, a: 0}
+    key1: {r: 0.27474102, g: 0.19697326, b: 0.49725044, a: 1}
+    key2: {r: 0.21267124, g: 0.35910138, b: 0.551635, a: 0}
+    key3: {r: 0.1529581, g: 0.49805146, b: 0.5576853, a: 0}
+    key4: {r: 0.12205359, g: 0.6321055, b: 0.53084886, a: 0}
+    key5: {r: 0.29001394, g: 0.7588451, b: 0.42782715, a: 0}
+    key6: {r: 0.62218237, g: 0.8538143, b: 0.2262479, a: 0}
+    key7: {r: 0.99324816, g: 0.90615475, b: 0.14393595, a: 0}
+    ctime0: 0
+    ctime1: 9362
+    ctime2: 18724
+    ctime3: 28086
+    ctime4: 37449
+    ctime5: 46811
+    ctime6: 56173
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 8
+    m_NumAlphaKeys: 2
   renderOnTop: 0
   textureFilterMode: 1
+  Temperature: 20
+  mqttReceiver: {fileID: 0}
+--- !u!114 &5136773153569053874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9056879332494175312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54f41d2ec2623842acf7c53a6f1ea92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  examplePointsAmount: 100
