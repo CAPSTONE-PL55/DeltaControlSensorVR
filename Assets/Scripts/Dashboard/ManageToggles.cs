@@ -98,6 +98,28 @@ public class ManageToggles : MonoBehaviour
                 rain.SetActive(false);
             }
         }
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform child = transform.GetChild(i);
+            GameObject heatmap = child.Find("Heatmap").gameObject;
+            if (temperature.isOn) {
+                heatmap.SetActive(true);
+            } else {
+                heatmap.SetActive(false);
+            }
+        }
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform child = transform.GetChild(i);
+            GameObject light = child.Find("PointLight").gameObject;
+            if (luminance.isOn) {
+                light.SetActive(true);
+            } else {
+                light.SetActive(false);
+            }
+        }
     }
 
     void ToggleAll()
