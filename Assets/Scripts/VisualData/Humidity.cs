@@ -5,12 +5,13 @@ using UnityEngine;
 // Works when placed in sensor object
 public class Humidity : MonoBehaviour
 {
-    private int humidity = 45;
+    private double humidity = 45;
     private ParticleSystem rainParticleSystem;
     private ParticleSystem dripParticleSystem;
     private GameObject stormClouds;
     private GameObject rainRipple;
     private GameObject dripRipple;
+    public GameObject mqttReceiver;
 
     private List<ParticleSystem.Burst> lowDrip;
     private List<ParticleSystem.Burst> highDrip;
@@ -35,8 +36,8 @@ public class Humidity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int tempHumid = humidity;
-        SetHumidityValue();
+        double tempHumid = humidity;
+        GetReadings();
 
         if (tempHumid != humidity) {
             CheckHumidity();
@@ -70,20 +71,9 @@ public class Humidity : MonoBehaviour
         }
     }
 
-    // for testing
-    void SetHumidityValue()
+    void GetReadings()
     {
-        if (Input.GetAxis("1Key") != 0) {
-            humidity = 20;
-        } else if (Input.GetAxis("2Key") != 0) {
-            humidity = 30;
-        } else if (Input.GetAxis("3Key") != 0) {
-            humidity = 50;
-        } else if (Input.GetAxis("4Key") != 0) {
-            humidity = 65;
-        } else if (Input.GetAxis("5Key") != 0) {
-            humidity = 75;
-        }
+        humidity = mqttReceiver.GetComponent<mqttReceiver1>().readings.humidity;
     }
 
     void SetParticlesActive(bool r, bool rR, bool d, bool dR, bool sC)

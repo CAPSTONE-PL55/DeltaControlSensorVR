@@ -5,12 +5,13 @@ using UnityEngine;
 public class Occupancy : MonoBehaviour
 {
     public float fadeTime = 1.0f;
-    public int occupancy = 0;
+    public double occupancy = 0;
     public int occupancyLimit = 2;
 
     private MeshRenderer meshRenderer;
     private Material material;
     private Material[] materials;
+    public GameObject mqttReceiver;
 
     // Initiallize array of materials for avatars and set all alphas to 0
     private void Start()
@@ -33,11 +34,8 @@ public class Occupancy : MonoBehaviour
     // Based on the current occupancy level, update the number of visable occupants and set oppcupant colour
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O)) {
-            occupancy += 1;
-        } else if (Input.GetKeyDown(KeyCode.K) && occupancy > 0) {
-            occupancy -= 1;
-        } 
+        GetReadings();
+
         for (int i = 0; i < occupancyLimit; i++)
         {
             Material material = materials[i];
@@ -53,7 +51,7 @@ public class Occupancy : MonoBehaviour
             }
 
             // Change colour of all avatars under certain occupancy levels (checks if material already has colour to apply first)
-            float percentOccupied = occupancy / (float) occupancyLimit;
+            float percentOccupied = (float) occupancy / (float) occupancyLimit;
             if (percentOccupied <= 0.25f && material.color.r != 19/255f)
             {
                 material.color = new Color(19/255f, 149/255f, 26/255f, material.color.a);
@@ -71,6 +69,11 @@ public class Occupancy : MonoBehaviour
                 material.color = new Color(220/255f, 40/255f, 10/255f, material.color.a);
             }
         }
+    }
+
+    void GetReadings()
+    {
+        occupancy = mqttReceiver.GetComponent<mqttReceiver1>().readings.occupancy;
     }
 
     private void ChangeAlpha(Material material, float targetAlpha)
