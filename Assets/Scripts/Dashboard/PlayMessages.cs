@@ -71,16 +71,16 @@ public class PlayMessages : MonoBehaviour
                     // publish the soundFile to the appropriate O3 device depending on dropdown selection
                     if(dropdownValues[index] == 0)
                     {
-                        mqttReceiver1.Publish(voiceCueTopicList, soundFile);
+                        mqttReceiver1.Publish("1/"+ voiceCueTopicList, soundFile);
                     }
                     else if(dropdownValues[index] == 1)
                     {
-                        mqttReceiver2.Publish(voiceCueTopicList, soundFile);
+                        mqttReceiver2.Publish("2/"+ voiceCueTopicList, soundFile);
                     }
                     else
                     {
-                        mqttReceiver1.Publish(voiceCueTopicList, soundFile);
-                        mqttReceiver2.Publish(voiceCueTopicList, soundFile);
+                        mqttReceiver1.Publish("1/"+voiceCueTopicList, soundFile);
+                        mqttReceiver2.Publish("2/"+voiceCueTopicList, soundFile);
                     }
 
                     imageComponent.sprite = retrySprite;
@@ -96,17 +96,17 @@ public class PlayMessages : MonoBehaviour
         // i.e "(1) Power On.wav"
         string outputFile = "";
 
-        if (text.Equals("\"FIRE ALARM\""))
+        if (text.Equals("\"NOTIFY\""))
         {
-            outputFile = "fire alarm";
+            outputFile = "(25) AmbientAlert.wav";
         }
-        else if (text.Equals("\"TIME IS UP\""))
+        else if (text.Equals("\"ALARM\""))
         {
-            outputFile = "time is up";
+            outputFile = "(14) Security Alarm.wav";
         }
-        else if (text.Equals("\"5 MINUTE WARNING\""))
+        else if (text.Equals("\"WARNING\""))
         {
-            outputFile = "5 minute warning";
+            outputFile = "(11) Critical Alarm.wav";
         }
         else
         {
