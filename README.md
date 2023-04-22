@@ -79,5 +79,12 @@ When pressing the play button, it will send the command using a MQTT connection 
 ### Toggling sensor data
 The section contains checkmarks to indicate which sensor visualizations are active. They can each be independtly selected to turn on/off. The all option will select all if checked and of all options are selected, toggling it off will turn off all visualization.
 
+## Troubleshooting
+### Sensor text not changing display
+First make the sure that console messages indicate that the broker connection the MQTT as been established. If this issue persitists with MQTT set up properly then use the text1 prefab in the prefabs folder. Simply drag it to the desired sensor then copy all of the configured settings from the original text object to the new one. This issue has occurred and been solved using this process durring testing.
+
+### Prefab for sensor has purple/pink heatmap
+Check the material for the tempurature display, if it is empty, assign it the heatmap material. Alternatively, a new sensor can be added by copying and pasting an already existing sensor.
+
 ## Asset Packs
 A variety of asset packs were used in creating the Unity scene. All asset packs used with their lisences can be found in the assets fo the project.
