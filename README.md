@@ -16,6 +16,7 @@ Humidity is visualized using five levels for quick identification:
 - 50% to 60%: Heavy rain with splashes on impact.
 - Above 60%: Very heavy rain with splashes on impact and thunder clouds.
 
+![Humidity](Figures/humidity.png)
 Figure 1 - Visualization of humidity at over 60%
 
 ### Sound
@@ -50,6 +51,7 @@ The dashboard contains two sections, sending voice commands (control pannel) and
 
 ### Control Pannel
 The control pannel contains a list of voice commands that can be sent to a sensor. Each command contains a drop down to select the sensor and a play button to send the command. The drop down is currently hard coded to send to sensor 1, sensor 2, or all. These drop down options can be dynamically assigned by editing it in Scripts/Dashboard/PlayMessages.cs before or after the event listener is added. 
+
 When pressing the play button, it will send the command using a MQTT connection and the play icon becomes a reload icon indefinetly unless the drop down value changes.
 
 ### Toggling sensor data
