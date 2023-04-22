@@ -49,6 +49,8 @@ Figure 5 - Visualization of heat map at 15 degrees celsius
 The dashboard contains two sections, sending voice commands (control pannel) and toggling sensor data.
 
 ### Control Pannel
+The control pannel contains a list of voice commands that can be sent to a sensor. Each command contains a drop down to select the sensor and a play button to send the command. The drop down is currently hard coded to send to sensor 1, sensor 2, or all. These drop down options can be dynamically assigned by editing it in Scripts/Dashboard/PlayMessages.cs before or after the event listener is added. 
+When pressing the play button, it will send the command using a MQTT connection and the play icon becomes a reload icon indefinetly unless the drop down value changes.
 
 ### Toggling sensor data
 The section contains checkmarks to indicate which sensor visualizations are active. They can each be independtly selected to turn on/off. The all option will select all if checked and of all options are selected, toggling it off will turn off all visualization.
