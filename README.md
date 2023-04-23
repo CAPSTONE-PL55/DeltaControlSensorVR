@@ -1,5 +1,5 @@
 # DeltaControlSensorVR
-VR for viewing sensor readings in a building. A connection is used to an external MQTT broker that allows this application to retrieve live sensor readings from Delta Control's O3 sensors and to send commands for those sensors to play pre-recorded messages. Additional sensors can be added by dragging the sensor prefab in the prefab folder into the scene. Only set up required is to set a new tag for the receive in the sensor and setting the prefixes in the receiver.
+VR for viewing sensor readings in a building. A connection is used to an external MQTT broker that allows this application to retrieve live sensor readings from Delta Control's O3 sensors and to send commands for those sensors to play pre-recorded messages. Additional sensors can be added by dragging the sensor prefab in the prefab folder into the scene. Only set up required is to set a new tag for the receiver in the sensor and setting the prefixes in the receiver.
 
 ## Version
 This project uses Unity editor 2020 and is compatable with any 2020 build version. Conversion to other versions such as 2019 or 2021 are untested and could potentially break functionality.
