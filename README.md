@@ -15,7 +15,7 @@ The camera has movement controls binded to wasd. While q and e allow for vertica
 Humidity is visualized using five levels for quick identification:
 - Up to 20%: Occasional droplets falling with no splash on impact.
 - 20% to 30%: Frequent droplets with a splash on impact.
-- 30% to 50%: Light rain with no splash on impact. This range aligns with Health Canada's recommendation for human health and mould prevention [2].
+- 30% to 50%: Light rain with no splash on impact. This range aligns with Health Canada's recommendation for human health and mould prevention.
 - 50% to 60%: Heavy rain with splashes on impact.
 - Above 60%: Very heavy rain with splashes on impact and thunder clouds.
 
